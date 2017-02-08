@@ -1,0 +1,23 @@
+﻿#include <stdio.h>
+#include <stdlib.h>
+
+// Показывает что в массиве и сколько байт
+
+void printArray(int mas[]);
+
+int main()
+{
+	int mas[] = { 123, 345, 234, 678, 909, 772, 567, 568, 239, 228, 277, 782, 122 };
+
+	int const masCount = sizeof(mas) / sizeof(int); //Показывает байты
+	printf("%i\n", sizeof(mas)); 
+	printArray(mas, masCount);
+}
+
+void printArray(int mas[], int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		printf("mas[%i] = %i\n", i, mas[i]);
+	}
+}
