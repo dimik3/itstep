@@ -1,0 +1,38 @@
+﻿#include <stdio.h>
+#include <stdlib.h>
+
+#define COUNT 10
+
+void fillArray(int mas[],int size);
+void printNonZeroElements(int mas[],int size);
+
+
+int main()
+{
+	int mas[COUNT];
+	fillArray(mas, COUNT);
+	printNonZeroElements(mas, COUNT);
+	return 0;
+}
+
+void fillArray(int mas[],int size)
+{
+	for (int j = 0; j < size; j++)
+	{
+		printf("Enter %i number: ", j + 1);
+		scanf("%d", &mas[j]);
+	}
+}
+
+void printNonZeroElements(int mas[],int size)
+{
+	int i = 0;
+	while (i < size)
+	{
+		if (mas[i] != 0)
+		{
+			printf("mas[%i] = %i\n", i, mas[i]);
+		}
+		i++;
+	}
+}
