@@ -1,0 +1,60 @@
+﻿#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+//Сортировка выбором
+
+#define MAS_SIZE 10
+int printSort(int mass[],int size);
+int Sorting(int mass[],int size);
+int printAfterSorting(int mass[],int size);
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int mass[] = { 8, 9, 7, 0, 6, 5, 2, 3, 1, 4 };
+	printSort(mass,MAS_SIZE);
+	Sorting(mass,MAS_SIZE);
+	printAfterSorting(mass, MAS_SIZE);
+	return 0;
+}
+int printSort(int mass[],int size)
+{
+	// Ввывод на экран до сортировки
+	printf("До сортировки:\n");
+	for (int s = 0; s < size; s++)
+	{
+		printf("Число: %i\n", mass[s]);
+	}
+	printf("\n");
+}
+int Sorting(int mass[],int size)
+{	//Сортировка
+	int min = 0;
+	int temp = 0;
+	for (int i = 0; i < size - 1; i++)
+	{
+		min = i; // запоминаем индекс текущего элемента
+		// ищем минимальный элемент чтобы поместить на место i-ого
+		for (int j = i + 1; j < size; j++) // для остальных элементов после i-ого
+		{
+			if (mass[j] < mass[min]) // если элемент меньше минимального,
+				min = j;     // запоминаем его индекс в min
+		}
+		temp = mass[i];      // меняем местами i-ый и минимальный элементы
+		mass[i] = mass[min];
+		mass[min] = temp;
+	}
+}
+int printAfterSorting(int mass[],int size)
+{
+	//Ввывод на экран после сортировки
+	printf("После сортировки:\n");
+	for (int h = 0; h < size; h++)
+	{
+		printf("Число: %i\n",mass[h]);
+	}
+	getchar();
+	printf("Good Jobs :)\n");
+	return 0;
+}
