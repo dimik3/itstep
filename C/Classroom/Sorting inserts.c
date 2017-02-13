@@ -27,6 +27,7 @@ int main()
 			mass[location + 1] = mass[location];
 			location = location - 1;
 		}
+		mass[location + 1] = newElement;
 	}
 	//Ввывод массива на экран после сортировки
 	printf("После сортировки:\n");
