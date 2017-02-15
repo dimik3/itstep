@@ -1,0 +1,42 @@
+﻿#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+// Многомерные массивы.
+void getArray(int matrix[2][5],int lineCount,int lineNumber);
+void printArray(int matrix[2][5],int lineCount,int lineNumber);
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int matrix[2][5];
+	getArray(matrix,2,5);
+	printArray(matrix,2,5);
+}
+
+void getArray(int matrix[2][5],int lineCount,int lineNumber)
+{
+	for (int i = 0; i < lineCount; i++)
+	{
+		for (int j = 0; j < lineNumber; j++)
+		{
+			printf("matrix[%i][%i]= ", i, j);
+			scanf("%i/n", &matrix[i][j]);
+		}
+
+	}
+}
+
+void printArray(int matrix[2][5],int lineCount,int lineNumber)
+{
+
+	for (int s = 0; s < lineCount; s++)
+	{
+
+		for (int d = 0; d < lineNumber; d++)
+		{
+			printf("%i\t",matrix[s][d]);
+		}
+		printf("\n");
+	}
+}
