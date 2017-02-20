@@ -1,0 +1,99 @@
+﻿#include <stdio.h>
+#include <locale.h>
+#include <time.h>
+#include <stdlib.h>
+
+// Указатели 
+
+void getData(int* a,int* b,int* c,int* d,int* g);
+void printData(int* a, int* b, int* c,int* d,int* g);
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int a;
+	int b;
+	int c;
+	int d;
+	int g;
+	getData(&a,&b,&c,&d,&g);
+	printData(&a, &b, &c, &d, &g);
+}
+
+void getData(int* a, int* b, int* c, int* d, int* g)
+{
+	printf("Введите 5 значении:\n");
+	scanf("%i", a);
+	if (*a < 0 || *a > 32)
+	{
+		printf("Error!");
+		exit(0);
+	}
+	scanf("%i", b);
+	if (*b < 0 || *b > 32)
+	{
+		printf("Error!");
+		exit(0);
+	}
+	scanf("%i", c);
+	if (*c < 0 || *c > 32)
+	{
+		printf("Error!");
+		exit(0);
+	}
+	scanf("%i", d);
+	if (*d < 0 || *d > 32)
+	{
+		printf("Error!");
+		exit(0);
+	}
+	scanf("%i", g);
+	if (*g < 0 || *g > 32)
+	{
+		printf("Error!");
+		exit(0);
+	}
+}
+
+void printData(int* a, int* b, int* c, int* d, int* g)
+{
+	printf("\nВы ввели:\n");
+	printf("%i\n", *a);
+	printf("%i\n", *b);
+	printf("%i\n", *c);
+	printf("%i\n", *d);
+	printf("%i\n", *g);
+}
+
+
+
+/*
+void main()
+{
+	int i = 5;
+	char a = '6';
+	float s = 7;
+	double g = 8.0;
+	
+	int* pI1 = &i;
+	char* pI2 = &a;
+	float* pI3 = &s;
+	double* pI4 = &g;
+	
+	printf("%i\n", *pI1);
+	printf("%c\n", *pI2);
+	printf("%f\n", *pI3);
+	printf("%f\n", *pI4);
+	
+	printf("\n0x%p\n", pI1);
+	printf("0x%p\n", pI2);
+	printf("0x%p\n", pI3);
+	printf("0x%p\n", pI4);
+
+	printf("\n%i\n", sizeof(pI1));
+	printf("%i\n", sizeof(pI2));
+	printf("%i\n", sizeof(pI3));
+	printf("%i\n", sizeof(pI4));
+
+}
+*/
