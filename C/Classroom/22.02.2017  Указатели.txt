@@ -1,0 +1,43 @@
+﻿#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+
+void swap(int* a, int* b);
+
+int main()
+{
+	int a = 4;
+	int b = 5;
+	swap(&a, &b);
+	printf("a = %i\n",a);
+	printf("b = %i\n", b);
+}
+
+void swap(int* a, int* b)
+{									//Меняем значения a и b местами .
+	int buff = *a;
+	*a = *b;							
+	*b = buff;
+}
+
+/*void getFactorial(int n,int* result);
+
+int main()
+{
+	int const n = 4;
+	int result = 1;
+	getFactorial(n,&result);
+
+	printf("result = %i", result);
+}
+
+void getFactorial(int n, int* result)
+{
+	if (n < 2)
+	{
+		return;
+	}
+	getFactorial(n - 1, result);
+	*result = n * (*result);
+}
+*/
