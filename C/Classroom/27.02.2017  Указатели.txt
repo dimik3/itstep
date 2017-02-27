@@ -1,0 +1,49 @@
+﻿#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+#include <Windows.h>
+
+//Указатель на функцию
+
+void main()
+{
+	HMODULE dll = LoadLibraryA("c:\\windows\\system32\\user32.dll");
+	int (*pShoMessege)(HWND,LPCTSTR,LPCTSTR,UINT);
+	pShoMessege = (int(*)(HWND, LPCTSTR, LPCTSTR, UINT))GetProcAddress(dll, "MessageBoxA");
+	pShoMessege(NULL,"Hello World !!!","myProgram",MB_OKCANCEL | MB_HELP | MB_COMPOSITE);
+}
+
+/*
+
+//Создать массив и заполнить рандомными значениями,указатель на него и вывести принтом
+void fillRand(int* mas,int* size);
+void printArray(int* mas, int* size);
+
+
+int main()
+{
+	
+	setlocale(LC_ALL, "rus");
+	int mas[10];
+	int size = 10;
+	srand(&size);
+	fillRand(mas,&size);
+	printArray(mas,&size);
+}
+
+void fillRand(int* mas,int* size)
+{
+	for (int i = 0; i < *size; i++)
+	{
+		*(mas + i) = rand() % 100;
+	}
+}
+
+void printArray(int* mas, int* size)
+{
+	for (int i = 0; i < *size; i++)
+	{
+		printf("Число: %i\n", *(mas + i));
+	}
+}
+*/
