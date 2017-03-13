@@ -1,0 +1,95 @@
+﻿#include <stdio.h>
+// Строки
+
+void myStrAdd(char* greatingStart, char* result)
+{
+	while (*result != 0)
+	{
+		result++;
+	}
+	while (*greatingStart != 0)
+	{
+		*result = *greatingStart;
+		result++;
+		greatingStart++;
+	}
+}
+
+void myName(char* name, char* result)
+{
+	while (*result != 0)
+	{
+		result++;
+	}
+	while (*name != 0)
+	{
+		*result = *name;
+		result++;
+		name++;
+	}
+}
+
+void myStrEnd(char* greatingEnd, char* result)
+{
+	while (*result != 0)
+	{
+		result++;
+	}
+	while (*greatingEnd != 0)
+	{
+		*result = *greatingEnd;
+		result++;
+		greatingEnd++;
+	}
+}
+
+
+int main()
+{
+	char greatingStart[] = "Hello, ";
+	char greatingEnd[] = "! Nice to mmeet you.\n";
+	char name[] = "Dmitry";
+	char result[1024] = "";
+
+	myStrAdd(greatingStart,result);
+	myName(name,result);
+	myStrEnd(greatingEnd,result);
+	
+	printf("%s", result);
+}
+
+/* enum Case
+{
+	LowerCase,
+	UpperCase
+};
+
+void changeCase(char* string,
+enum Case changeToCase)
+{
+	while (*string != '\0')
+	{
+		char ch = *string;
+		if (changeToCase == UpperCase
+			&& ch >= 'a' && ch <= 'z')
+		{
+			*string -= 32;
+		}
+		else if (changeToCase == LowerCase
+			&& ch >= 'A' && ch <= 'Z')
+		{
+			*string += 32;
+		}
+		string++;
+	}
+}
+
+int main()
+{
+	char string[] = "dfdf kfdjk kldfj ljf dLKJJFDFDsf fdsf";
+
+	changeCase(string, UpperCase);
+	printf("%s\n", string);
+	changeCase(string, LowerCase);
+	printf("%s\n", string);
+}*/
