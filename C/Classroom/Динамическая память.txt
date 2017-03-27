@@ -1,0 +1,68 @@
+﻿#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+#include <windows.h>
+
+// Динамическая память (Heap / Куча)
+#define BOOKS_COUNT 3
+#define BOOKS_SIZE 2000
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+
+	char** books = malloc(BOOKS_COUNT * sizeof(char*));
+	//char* books[BOOKS_COUNT];
+	for (int i = 0; i < BOOKS_COUNT; i++)
+	{
+		*(books + i) = malloc(2000 * sizeof(char));
+	}
+	
+	for (int i = 0; i < BOOKS_COUNT; i++)
+	{
+		printf("Book #%i:\n",i + 1);
+		fgets(*(books + i),BOOKS_SIZE, stdin);
+		printf("\n");
+	}
+	printf("======= Library: =======\n");
+	for (int i = 0; i < BOOKS_COUNT; i++)
+	{
+		printf("Book #%i:\n", i + 1);
+		printf("%s\n", *(books + i));
+		printf("\n");
+	}
+	
+	printf("Clear memory....\n");
+	for (int i = 0; i < BOOKS_COUNT; i++)
+	{
+		free(*books + 0);
+		books++;
+	}
+	printf("%c", books);
+	
+	/*
+	int counter = 0;
+	int* pointers[100];
+	while (true)
+	{
+		pointers[counter] = malloc(100 * 1024 * 1024);
+
+		if (pointers[counter] == 0)
+		{
+			break;
+		}
+		counter++;
+	}
+	printf("%i Mb\n", counter * 100);
+	system("pause");
+
+	printf("\nНачинается чистка...\n");
+	for (int i = 0; i < counter; i++)
+	{
+		free(pointers[i]);
+	}
+	printf("\nЗачистили...\n");
+	*/
+}
