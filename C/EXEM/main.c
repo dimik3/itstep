@@ -20,7 +20,6 @@
 2. Имя рецепта
 3. Текст рецепта
 4. Рейтинг (от 1 до 10)
-
 */
 
 
@@ -64,7 +63,7 @@ int main()
 	char* Bonding = (char *)malloc(200);
 	char* dir = (char *)malloc(200);
 	printf("\t\t =*=*=*=*=*=*= Книга рецептов =*=*=*=*=*=*= \n\n");
-	recipeInfo(recipeAdd,buff, fileName, Bonding, dir);
+	recipeInfo(recipeAdd, buff, fileName, Bonding, dir);
 	return 0;
 }
 
@@ -74,7 +73,7 @@ void recipeInfo(struct Recipe* recipeAdd, struct Recipe* buff,
 	while (true)
 	{
 		printf("Выберите пункт меню:\n");
-		printf("1 - Добавить рецепт\n2 - Показать все рецепты на диске\n3 - Открыть рецепт\n4 - Редактировать рецепт\n5 - Удалить рецепт\n0 - Выход\n");
+		printf("1 - Добавление рецепта\n2 - Показать все рецепты на диске\n3 - Просмотр рецепта\n4 - Редактирование рецепта\n5 - Удаление рецепта\n0 - Выход\n");
 		char pressKey = getch();
 		switch (pressKey)
 		{
@@ -103,6 +102,7 @@ void recipeInfo(struct Recipe* recipeAdd, struct Recipe* buff,
 			return 0;
 			break;
 		default:
+			system("cls");
 			printf("\nВы ввели неверное значение...\n\n");
 			break;
 		}
@@ -189,8 +189,9 @@ void viewRecipe(struct Recipe* buff,
 	FILE* openRecipe = fopen(dir, "r+b");
 	if (openRecipe == NULL)
 	{
-		printf("Нету такого рецепта на диске!\n\n");
-		exit(0);
+		Sleep(500);
+		printf("\nНету такого рецепта на диске!\n\n");
+		return 1;
 	}
 
 	fread(buff, sizeof(struct Recipe), 1, openRecipe);
@@ -222,8 +223,9 @@ void editRecipe(struct Recipe* buff,
 	FILE* openAndReductRecipe = fopen(dir, "r+b");
 	if (openAndReductRecipe == NULL)
 	{
-		printf("Нету такого рецепта на диске!\n\n");
-		exit(0);
+		Sleep(500);
+		printf("\nНету такого рецепта на диске!\n\n");
+		return 1;
 	}
 	fread(buff, sizeof(struct Recipe), 1, openAndReductRecipe);
 	fclose(openAndReductRecipe);
