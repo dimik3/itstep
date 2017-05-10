@@ -1,9 +1,10 @@
 #include <stdio.h>
-#include <locale.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <windows.h>
+#include <string.h>
+#include <locale.h>
 #include <direct.h>
+#include <windows.h>
 
 /*
 Разработать программу хранения рецептов.
@@ -73,23 +74,28 @@ void recipeInfo(struct Recipe* recipeAdd, struct Recipe* buff,
 	while (true)
 	{
 		printf("Выберите пункт меню:\n");
-		printf("1 - Добавить рецепт\n2 - Показать все рецепты на диске\n3 - Посмотреть содержимое рецепта\n4 - Редактировать рецепт\n5 - Удалить рецепт\n0 - Выход\n");
+		printf("1 - Добавить рецепт\n2 - Показать все рецепты на диске\n3 - Открыть рецепт\n4 - Редактировать рецепт\n5 - Удалить рецепт\n0 - Выход\n");
 		char pressKey = getch();
 		switch (pressKey)
 		{
 		case AddRecipe:
+			system("cls");
 			addRecipe(recipeAdd, fileName, Bonding, dir);
 			break;
 		case VieRecipe:
+			system("cls");
 			viewRecipe(buff, fileName, Bonding, dir);
 			break;
 		case EditRecipe:
+			system("cls");
 			editRecipe(buff, fileName, Bonding, dir);
 			break;
 		case DelReciep:
+			system("cls");
 			delReciep(fileName, Bonding, dir);
 			break;
 		case ShowAllRecipe:
+			system("cls");
 			showAllRecipe(Bonding);
 			printf("\n");
 			continue;
@@ -116,6 +122,7 @@ void addRecipe(struct Recipe* recipeAdd,
 	strcpy(Bonding, "D:\\Book of recipes\\");
 	printf("Введите имя рецепта:\n");
 	fgets(fileName, 50, stdin);
+	Sleep(500);
 
 	char* nameRecipe[256];
 	strcpy(nameRecipe, fileName);
@@ -132,12 +139,16 @@ void addRecipe(struct Recipe* recipeAdd,
 	strcpy(recipeAdd->name, &nameRecipe);
 	printf("Введите дату рецепта(дд.мм.гггг):\n");
 	fgets(recipeAdd->date, 50, stdin);
+	Sleep(500);
 	printf("Введите рейтинг рецепта(1..10):\n");
 	fgets(recipeAdd->rating, 50, stdin);
+	Sleep(500);
 	printf("Введите текст рецепта:\n");
 	fgets(recipeAdd->text, 1024, stdin);
+	Sleep(500);
 
 	fwrite(recipeAdd, sizeof(struct Recipe), 1, newFile);
+	printf("\nЗапись рецепта завершена.\n");
 	fclose(newFile);
 }
 
@@ -152,7 +163,7 @@ void showAllRecipe(char* Bonding)
 	}
 	else
 	{
-		printf("Имеются следующие рецепты:\n");
+		printf("Список рецептов:\n");
 		do
 		{
 			printf(" - %s\n", found.cFileName);
@@ -167,6 +178,7 @@ void viewRecipe(struct Recipe* buff,
 	printf("Введите имя рецепта:\n");
 	fgets(fileName, 50, stdin);
 	fileName[strlen(fileName) - 1] = '\0';
+	Sleep(500);
 
 
 	strcat(fileName, ".recipe");
@@ -184,9 +196,9 @@ void viewRecipe(struct Recipe* buff,
 	fread(buff, sizeof(struct Recipe), 1, openRecipe);
 	printf("Название рецепта: %s", buff->name);
 	printf("===============================================\n");
-	printf("Дата создания: %s\n", buff->date);
+	printf("Дата создания: %s", buff->date);
 	printf("===============================================\n");
-	printf("Текст: %s\n", buff->text);
+	printf("Текст: %s", buff->text);
 	printf("===============================================\n");
 	printf("Рейтинг: %s", buff->rating);
 	printf("===============================================\n");
@@ -200,6 +212,7 @@ void editRecipe(struct Recipe* buff,
 	printf("Введите имя рецепта:\n");
 	fgets(fileName, 250, stdin);
 	fileName[strlen(fileName) - 1] = '\0';
+	Sleep(500);
 
 	strcat(fileName, ".recipe");
 	mkdir(Bonding);
@@ -217,9 +230,11 @@ void editRecipe(struct Recipe* buff,
 
 	printf("Введите текст рецепта:\n");
 	fgets(buff->text, 1024, stdin);
+	Sleep(500);
 
 	FILE* reductRecipe = fopen(dir, "w+b");
 	fwrite(buff, sizeof(struct Recipe), 1, reductRecipe);
+	printf("\nОтредактировано...\n");
 	fclose(reductRecipe);
 }
 
@@ -229,6 +244,7 @@ void delReciep(char* fileName, char* Bonding, char* dir)
 	printf("Введите имя рецепта:\n");
 	fgets(fileName, 256, stdin);
 	fileName[strlen(fileName) - 1] = '\0';
+	Sleep(500);
 
 	strcat(fileName, ".recipe");
 	mkdir(Bonding);
@@ -237,10 +253,10 @@ void delReciep(char* fileName, char* Bonding, char* dir)
 
 	if (remove(dir) == -1)
 	{
-		printf("Нету рецепта с таким именем!\n");
+		printf("Нету рецепта с таким именем !\n");
 	}
 	else
 	{
-		printf("Удалено..\n");
+		printf("Рецепт успешно удалён...\n");
 	}
 }
